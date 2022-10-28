@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/css/screen.css">
+
+	<script defer src="https://unpkg.com/vue@3.2.41/dist/vue.global.js"></script>
+
+	<script defer src="assets/js/data.js"></script>
+	<script defer src="assets/js/script.js"></script>
+
+	<title>Weather app - Vue project</title>
+</head>
+<body>
+	<main id="app">
+
+		<header> Weather app - Vue.js </header>
+		
+		<form>
+			<label for="countries"> Choose a country: </label>
+			<select name="countries" id="countries" @change="changeCountry" required>
+				<option v-for="country in countries" :value="country.code">{{country.name}}</option>
+			</select>
+
+			<!-- if country exists -->
+			<label for="city" v-if="currentName.length !== 0"> Enter a city from: {{currentName}}</label>
+			
+			<input v-if="currentName.length !== 0" type="text" minlength="1" required id="city" ref="city">
+
+			<input type="text" ref="rapidAPIKey" placeholder="Enter rapid api key" required>
+			<button type="button" @click="processCountryInfoRequest"> Process Weather </button>
+		</form>
+
+		<div id="results" v-if="resultInfoCountry !== null && weatherInformation !== null">
+			<p ref="temperature"></p>
+			<p ref="weather"></p>
+		</div>
+	</main>
+	
+</body>
+</html>
