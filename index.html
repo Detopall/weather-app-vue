@@ -29,13 +29,18 @@
 			
 			<input v-if="currentName.length !== 0" type="text" minlength="1" required id="city" ref="city">
 
-			<input type="text" ref="rapidAPIKey" placeholder="Enter rapid api key" required>
+			<input type="text" ref="rapidAPIKey" placeholder="Enter your RapidAPI key" required>
 			<button type="button" @click="processCountryInfoRequest"> Process Weather </button>
 		</form>
 
-		<div id="results" v-if="resultInfoCountry !== null && weatherInformation !== null">
-			<p ref="temperature"></p>
-			<p ref="weather"></p>
+		<!-- if info processed -->
+		<div id="results" v-if="resultInfoCountry !== null">
+			<p ref="temperature">This is the temperature: </p>
+			<p ref="symbolPhrase">Weather: </p>
+		</div>
+
+		<div v-else>
+			<p> Please enter a valid country, city and RapidAPI key </p>
 		</div>
 	</main>
 	
